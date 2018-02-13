@@ -25,19 +25,62 @@ public:
 
     virtual ~CommandProcessor() = default;
     
+    virtual void StartBlock() = 0;
+    virtual void FinishBlock() = 0;
     virtual void ProcessCommand(const Command& command) = 0;
 
 protected:
     CommandProcessor* mNextCommandProcessor;
 };
 
-class ConsoleCommandProcessor : public CommandProcessor
+class ConsoleInput : public CommandProcessor
 {
 public:
-    ConsoleCommandProcessor(CommandProcessor* nextCommandProcessor = nullptr)
+    ConsoleInput(CommandProcessor* nextCommandProcessor = nullptr)
+        : mNextCommandProcessor(nextCommandProcessor)
+        , mBlockDepth(0)
+    {        
+    }
+
+    void StartBlock() override {}
+    void FinishBlock() override {}
+
+    void ProcessCommand(const Command& command) override
+    {
+        if (mNextCommandProcessor)
+        {
+            if (command.Text == "{")
+            {
+                if (++mBlockDepth > 0)
+                    mNextCommandProcessor->StartBlock();
+            }
+            else if (command.Text == "}")
+            {
+                if (--mBlockDepth == 0)
+                    mNextCommandProcessor->FinishBlock();
+            }
+            else
+                mNextCommandProcessor->ProcessCommand(command);
+        }
+    }
+
+protected:
+    CommandProcessor* mNextCommandProcessor;
+
+private:
+    int mBlockDepth;
+};
+
+class ConsoleOutput : public CommandProcessor
+{
+public:
+    ConsoleOutput(CommandProcessor* nextCommandProcessor = nullptr)
         : CommandProcessor(nextCommandProcessor)
     {        
     }
+
+    void StartBlock() override {}
+    void FinishBlock() override {}
 
     void ProcessCommand(const Command& command) override
     {
@@ -55,6 +98,9 @@ public:
     {        
     }
 
+    void StartBlock() override {}
+    void FinishBlock() override {}
+
     void ProcessCommand(const Command& command) override
     {
         std::ofstream file(GetFilename(command), std::ofstream::out);
@@ -64,10 +110,10 @@ public:
 private:
     std::string GetFilename(const Command& command)
     {
-        auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
+        auto seconds = std::chrono::duration_cast<std::chrono::seconds>(
         command.Timestamp.time_since_epoch()).count();
         std::stringstream filename;
-        filename << "bulk" << milliseconds << ".log";
+        filename << "bulk" << seconds << ".log";
         return filename.str();
     }
 };
@@ -78,23 +124,46 @@ public:
     BatchCommandProcessor(int bulkSize, CommandProcessor* nextCommandProcessor)
         : CommandProcessor(nextCommandProcessor)
         , mBulkSize(bulkSize)
+        , mBlockForced(false)
     {        
     }
+
+    ~BatchCommandProcessor()
+    {
+        DumpBatch();
+    }
     
+    void StartBlock() override
+    {
+        mBlockForced = true;
+    }
+
+    void FinishBlock() override
+    {
+        mBlockForced = false;
+        DumpBatch();
+    }
+
     void ProcessCommand(const Command& command) override
     {
         mCommandBatch.push_back(command);
-        if (mCommandBatch.size() >= mBulkSize)
+
+        if (!mBlockForced && mCommandBatch.size() >= mBulkSize)
         {
-            if (mNextCommandProcessor)
-            {
-                std::string output = "bulk: " + Join(mCommandBatch);
-                mNextCommandProcessor->ProcessCommand(Command{output, mCommandBatch[0].Timestamp});
-            }
-            mCommandBatch.clear();
+            DumpBatch();
         }
     }
 private:
+    void DumpBatch()
+    {
+        if (mNextCommandProcessor)
+        {
+            std::string output = "bulk: " + Join(mCommandBatch);
+            mNextCommandProcessor->ProcessCommand(Command{output, mCommandBatch[0].Timestamp});
+        }
+        mCommandBatch.clear();
+    }
+
     static std::string Join(const std::vector<Command>& v)
     {
         std::stringstream ss;
@@ -107,19 +176,21 @@ private:
         return ss.str();
     }
     int mBulkSize;
+    bool mBlockForced;
     std::vector<Command> mCommandBatch;
 };
 
 void RunBulk(int bulkSize)
 {
     ReportWriter reportWriter;
-    ConsoleCommandProcessor consoleCommandProcessor(&reportWriter);
-    BatchCommandProcessor batchCommandProcessor(bulkSize, &consoleCommandProcessor);
-    while (true)
+    ConsoleOutput consoleOutput(&reportWriter);
+    BatchCommandProcessor batchCommandProcessor(bulkSize, &consoleOutput);
+    ConsoleInput consoleInput(&batchCommandProcessor);
+    while (!std::cin.eof())
     {
         std::string text;
         std::cin >> text;
-        batchCommandProcessor.ProcessCommand(Command{text, std::chrono::system_clock::now()});
+        consoleInput.ProcessCommand(Command{text, std::chrono::system_clock::now()});
     }
 }
 
