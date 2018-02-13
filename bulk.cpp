@@ -130,7 +130,8 @@ public:
 
     ~BatchCommandProcessor()
     {
-        DumpBatch();
+        if (!mBlockForced)
+            DumpBatch();
     }
     
     void StartBlock() override
