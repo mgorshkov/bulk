@@ -136,6 +136,7 @@ public:
     void StartBlock() override
     {
         mBlockForced = true;
+        ClearBatch();
     }
 
     void FinishBlock() override
@@ -154,6 +155,11 @@ public:
         }
     }
 private:
+    void ClearBatch()
+    {
+        mCommandBatch.clear();
+    }
+
     void DumpBatch()
     {
         if (mNextCommandProcessor)
@@ -161,7 +167,7 @@ private:
             std::string output = "bulk: " + Join(mCommandBatch);
             mNextCommandProcessor->ProcessCommand(Command{output, mCommandBatch[0].Timestamp});
         }
-        mCommandBatch.clear();
+        ClearBatch();
     }
 
     static std::string Join(const std::vector<Command>& v)

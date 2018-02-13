@@ -23,7 +23,6 @@ before_install:
 install:
   - sudo apt-get install -qq doxygen graphviz
 before_script:
-  - sudo apt-get install libboost-test-dev -y
   - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -qq
 script:
@@ -31,7 +30,6 @@ script:
   - cd ${BUILD_DIR}
   - cmake ..
   - cmake --build .
-  - cmake --build . --target test
   - cmake --build . --target package
 after_success:
   # Generate the docs only if master, and the TRAVIS_BUILD_DOCS is not zero
