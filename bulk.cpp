@@ -137,7 +137,7 @@ public:
     void StartBlock() override
     {
         mBlockForced = true;
-        ClearBatch();
+        DumpBatch();
     }
 
     void FinishBlock() override
