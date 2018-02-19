@@ -193,12 +193,9 @@ void RunBulk(int bulkSize)
     ConsoleOutput consoleOutput(&reportWriter);
     BatchCommandProcessor batchCommandProcessor(bulkSize, &consoleOutput);
     ConsoleInput consoleInput(&batchCommandProcessor);
-    while (!std::cin.eof())
-    {
-        std::string text;
-        std::cin >> text;
+    std::string text;
+    while (std::getline(std::cin, text))
         consoleInput.ProcessCommand(Command{text, std::chrono::system_clock::now()});
-    }
 }
 
 
