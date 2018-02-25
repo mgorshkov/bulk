@@ -20,13 +20,14 @@ class CommandProcessor
 public:
     CommandProcessor(CommandProcessor* nextCommandProcessor = nullptr)
         : mNextCommandProcessor(nextCommandProcessor)
-    {        
+    {
     }
 
     virtual ~CommandProcessor() = default;
-    
-    virtual void StartBlock() = 0;
-    virtual void FinishBlock() = 0;
+
+    virtual void StartBlock() {}
+    virtual void FinishBlock() {}
+
     virtual void ProcessCommand(const Command& command) = 0;
 
 protected:
@@ -37,13 +38,10 @@ class ConsoleInput : public CommandProcessor
 {
 public:
     ConsoleInput(CommandProcessor* nextCommandProcessor = nullptr)
-        : mNextCommandProcessor(nextCommandProcessor)
+        : CommandProcessor(nextCommandProcessor)
         , mBlockDepth(0)
-    {        
+    {
     }
-
-    void StartBlock() override {}
-    void FinishBlock() override {}
 
     void ProcessCommand(const Command& command) override
     {
@@ -64,9 +62,6 @@ public:
         }
     }
 
-protected:
-    CommandProcessor* mNextCommandProcessor;
-
 private:
     int mBlockDepth;
 };
@@ -76,15 +71,13 @@ class ConsoleOutput : public CommandProcessor
 public:
     ConsoleOutput(CommandProcessor* nextCommandProcessor = nullptr)
         : CommandProcessor(nextCommandProcessor)
-    {        
+    {
     }
-
-    void StartBlock() override {}
-    void FinishBlock() override {}
 
     void ProcessCommand(const Command& command) override
     {
         std::cout << command.Text << std::endl;
+
         if (mNextCommandProcessor)
             mNextCommandProcessor->ProcessCommand(command);
     }
@@ -95,16 +88,16 @@ class ReportWriter : public CommandProcessor
 public:
     ReportWriter(CommandProcessor* nextCommandProcessor = nullptr)
         : CommandProcessor(nextCommandProcessor)
-    {        
+    {
     }
-
-    void StartBlock() override {}
-    void FinishBlock() override {}
 
     void ProcessCommand(const Command& command) override
     {
         std::ofstream file(GetFilename(command), std::ofstream::out);
         file << command.Text;
+
+        if (mNextCommandProcessor)
+            mNextCommandProcessor->ProcessCommand(command);
     }
 
 private:
@@ -125,7 +118,7 @@ public:
         : CommandProcessor(nextCommandProcessor)
         , mBulkSize(bulkSize)
         , mBlockForced(false)
-    {        
+    {
     }
 
     ~BatchCommandProcessor()
@@ -133,7 +126,7 @@ public:
         if (!mBlockForced)
             DumpBatch();
     }
-    
+
     void StartBlock() override
     {
         mBlockForced = true;
@@ -163,7 +156,7 @@ private:
 
     void DumpBatch()
     {
-        if (mNextCommandProcessor)
+        if (mNextCommandProcessor && !mCommandBatch.empty())
         {
             std::string output = "bulk: " + Join(mCommandBatch);
             mNextCommandProcessor->ProcessCommand(Command{output, mCommandBatch[0].Timestamp});
@@ -197,7 +190,6 @@ void RunBulk(int bulkSize)
     while (std::getline(std::cin, text))
         consoleInput.ProcessCommand(Command{text, std::chrono::system_clock::now()});
 }
-
 
 int main(int argc, char const** argv)
 {
