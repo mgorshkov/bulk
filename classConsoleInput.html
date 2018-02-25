@@ -83,7 +83,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classConsoleInput-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ConsoleInput Class Reference</div>  </div>
@@ -108,10 +107,6 @@ Collaboration diagram for ConsoleInput:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e9e9fc5b57e0dd2adae33f3223b390d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConsoleInput.html#a0e9e9fc5b57e0dd2adae33f3223b390d">ConsoleInput</a> (<a class="el" href="classCommandProcessor.html">CommandProcessor</a> *nextCommandProcessor=nullptr)</td></tr>
 <tr class="separator:a0e9e9fc5b57e0dd2adae33f3223b390d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20f609eefbc6f2967a9054d555a01fc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConsoleInput.html#a20f609eefbc6f2967a9054d555a01fc5">StartBlock</a> () override</td></tr>
-<tr class="separator:a20f609eefbc6f2967a9054d555a01fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b799c0431a683fa081798d5fd988228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConsoleInput.html#a3b799c0431a683fa081798d5fd988228">FinishBlock</a> () override</td></tr>
-<tr class="separator:a3b799c0431a683fa081798d5fd988228"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a021f851463333eb60f24a7f64cc969b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConsoleInput.html#a021f851463333eb60f24a7f64cc969b9">ProcessCommand</a> (const <a class="el" href="structCommand.html">Command</a> &amp;command) override</td></tr>
 <tr class="separator:a021f851463333eb60f24a7f64cc969b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCommandProcessor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommandProcessor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommandProcessor.html">CommandProcessor</a></td></tr>
@@ -119,11 +114,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5b928b7035f7acd922a989cb812b03c7 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba6e8698f822cf3950d370f35ceb7259 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#aba6e8698f822cf3950d370f35ceb7259">~CommandProcessor</a> ()=default</td></tr>
 <tr class="separator:aba6e8698f822cf3950d370f35ceb7259 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7142154d4738a3229c2c8fca32e5a6b9 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a7142154d4738a3229c2c8fca32e5a6b9">StartBlock</a> ()</td></tr>
+<tr class="separator:a7142154d4738a3229c2c8fca32e5a6b9 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467f77bc5207127d8536e2e68b0809b5 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a467f77bc5207127d8536e2e68b0809b5">FinishBlock</a> ()</td></tr>
+<tr class="separator:a467f77bc5207127d8536e2e68b0809b5 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a2e0b8978c05e2ec7f249d7bb45d947c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCommandProcessor.html">CommandProcessor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConsoleInput.html#a2e0b8978c05e2ec7f249d7bb45d947c4">mNextCommandProcessor</a></td></tr>
-<tr class="separator:a2e0b8978c05e2ec7f249d7bb45d947c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classCommandProcessor"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCommandProcessor')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classCommandProcessor.html">CommandProcessor</a></td></tr>
 <tr class="memitem:af15ca0dde8f8c4333eb028e2511d39b3 inherit pro_attribs_classCommandProcessor"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCommandProcessor.html">CommandProcessor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#af15ca0dde8f8c4333eb028e2511d39b3">mNextCommandProcessor</a></td></tr>
 <tr class="separator:af15ca0dde8f8c4333eb028e2511d39b3 inherit pro_attribs_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,31 +151,6 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3b799c0431a683fa081798d5fd988228"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConsoleInput::FinishBlock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classCommandProcessor.html#ae69a0dc053a930d69199a37cf1c5bcec">CommandProcessor</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a021f851463333eb60f24a7f64cc969b9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -202,52 +174,6 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classCommandProcessor.html#a4f15b960b2180269c45cf338a8b8e307">CommandProcessor</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a20f609eefbc6f2967a9054d555a01fc5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConsoleInput::StartBlock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classCommandProcessor.html#a2febc99fcbbfe78e4b854e068f00f9ee">CommandProcessor</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a2e0b8978c05e2ec7f249d7bb45d947c4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCommandProcessor.html">CommandProcessor</a>* ConsoleInput::mNextCommandProcessor</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

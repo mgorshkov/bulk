@@ -107,10 +107,6 @@ Collaboration diagram for ReportWriter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e9b4f8f28501a3e8fa0237b39906ae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportWriter.html#a9e9b4f8f28501a3e8fa0237b39906ae6">ReportWriter</a> (<a class="el" href="classCommandProcessor.html">CommandProcessor</a> *nextCommandProcessor=nullptr)</td></tr>
 <tr class="separator:a9e9b4f8f28501a3e8fa0237b39906ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a251fa73c09477b11a226205bdd3a3595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportWriter.html#a251fa73c09477b11a226205bdd3a3595">StartBlock</a> () override</td></tr>
-<tr class="separator:a251fa73c09477b11a226205bdd3a3595"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac76f269727ecdc990ca20d3e67d14163"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportWriter.html#ac76f269727ecdc990ca20d3e67d14163">FinishBlock</a> () override</td></tr>
-<tr class="separator:ac76f269727ecdc990ca20d3e67d14163"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada66fafa756f8645f1af0d350ba63262"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportWriter.html#ada66fafa756f8645f1af0d350ba63262">ProcessCommand</a> (const <a class="el" href="structCommand.html">Command</a> &amp;command) override</td></tr>
 <tr class="separator:ada66fafa756f8645f1af0d350ba63262"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCommandProcessor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommandProcessor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommandProcessor.html">CommandProcessor</a></td></tr>
@@ -118,6 +114,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5b928b7035f7acd922a989cb812b03c7 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba6e8698f822cf3950d370f35ceb7259 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#aba6e8698f822cf3950d370f35ceb7259">~CommandProcessor</a> ()=default</td></tr>
 <tr class="separator:aba6e8698f822cf3950d370f35ceb7259 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7142154d4738a3229c2c8fca32e5a6b9 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a7142154d4738a3229c2c8fca32e5a6b9">StartBlock</a> ()</td></tr>
+<tr class="separator:a7142154d4738a3229c2c8fca32e5a6b9 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467f77bc5207127d8536e2e68b0809b5 inherit pub_methods_classCommandProcessor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a467f77bc5207127d8536e2e68b0809b5">FinishBlock</a> ()</td></tr>
+<tr class="separator:a467f77bc5207127d8536e2e68b0809b5 inherit pub_methods_classCommandProcessor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -151,31 +151,6 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac76f269727ecdc990ca20d3e67d14163"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReportWriter::FinishBlock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classCommandProcessor.html#ae69a0dc053a930d69199a37cf1c5bcec">CommandProcessor</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ada66fafa756f8645f1af0d350ba63262"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,31 +174,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classCommandProcessor.html#a4f15b960b2180269c45cf338a8b8e307">CommandProcessor</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a251fa73c09477b11a226205bdd3a3595"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReportWriter::StartBlock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classCommandProcessor.html#a2febc99fcbbfe78e4b854e068f00f9ee">CommandProcessor</a>.</p>
 
 </div>
 </div>
