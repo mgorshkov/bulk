@@ -49,7 +49,7 @@ public:
         {
             if (command.Text == "{")
             {
-                if (++mBlockDepth > 0)
+                if (mBlockDepth++ == 0)
                     mNextCommandProcessor->StartBlock();
             }
             else if (command.Text == "}")
